@@ -1,0 +1,32 @@
+services:
+  # app:
+  #   build: .
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - app_network
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=root
+      - POSTGRES_DB=postgres
+    volumes:
+      - postgres_bind_volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+#     networks:
+#       - app_network
+
+# networks:
+#   app_network:
+#     driver: bridge
+
+volumes:
+  postgres_bind_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/s/dev/postgres_docker_container/data

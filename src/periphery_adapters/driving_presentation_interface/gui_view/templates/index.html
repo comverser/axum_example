@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Reading List</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <link rel="stylesheet" type="text/css" href="static/styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>My Reading List</h1>
+    </header>
+
+    <main>
+        <div class="search" style="text-align: center;">
+            <input type="search" name="search" placeholder="search books by title..."
+                hx-post="/reading_list/books/search" hx-trigger="keyup changed delay:300ms" hx-target=".book-list">
+        </div>
+
+        <div class="book-list">
+            <button hx-get="/reading_list/books" hx-target=".book-list" hx-trigger="dblclick">Show Books</button>
+        </div>
+
+        <div class="add-book-form">
+            <h2>What do you want to read?</h2>
+            <form hx-post="/reading_list/books" hx-on::after-request="document.querySelector('form').reset()"
+                hx-target=".book-list ul" hx-swap="beforeend">
+                <input type="text" name="title" placeholder="title" required>
+                <input type="text" name="name" placeholder="author" required>
+                <button hx-on:click="console.log('net book added', event);">Add Book</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

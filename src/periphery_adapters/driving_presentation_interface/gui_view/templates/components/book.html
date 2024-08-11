@@ -1,0 +1,12 @@
+{% macro book(id, title, author) %}
+<li data-id="{{id}}">
+    <div class="details" hx-get="/reading_list/books/edit/{{id}}" hx-target="closest li">
+        <h3>{{title}}</h3>
+        <p>{{author}}</p>
+    </div>
+    <button hx-delete="/reading_list/books/{{id}}" hx-target="closest li" hx-swap="outerHTML">Delete</button>
+</li>
+
+{% endmacro %}
+
+{% call book(id, title, author) %}

@@ -1,0 +1,7 @@
+{% import "components/book.html" as book_component %}
+
+<ul>
+    {% for book in books %}
+    {% call book_component::book(book.id, book.title, book.author) %}
+    {% endfor %}
+</ul>

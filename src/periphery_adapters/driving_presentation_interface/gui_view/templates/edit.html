@@ -1,0 +1,5 @@
+<form hx-put="/reading_list/books/{{id}}" hx-target="closest li" hx-swap="outerHTML">
+    <input type="text" name="title" placeholder="title" value="{{title}}" required>
+    <input type="text" name="name" placeholder="author" value="{{author}}" required>
+    <button>Add Book</button>
+</form>

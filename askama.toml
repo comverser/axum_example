@@ -1,0 +1,5 @@
+[general]
+# Directories to search for templates, relative to the crate root.
+dirs = [
+    "src/periphery_adapters/driving_presentation_interface/gui_view/templates",
+]
