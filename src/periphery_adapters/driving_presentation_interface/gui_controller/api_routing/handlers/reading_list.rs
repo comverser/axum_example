@@ -22,17 +22,17 @@ pub struct SearchForm {
 }
 
 #[derive(Template)]
-#[template(path = "index.html")]
+#[template(path = "reading_list_index.html")]
 pub struct CreateHomepageTemplate {}
 
 #[derive(Template)]
-#[template(path = "list.html")]
+#[template(path = "partials/list.html")]
 pub struct CreateListTemplate {
     books: Vec<Book>,
 }
 
 #[derive(Template)]
-#[template(path = "components/book.html")]
+#[template(path = "partials/book.html")]
 pub struct CreateBookTemplate {
     id: String,
     title: String,
@@ -40,7 +40,7 @@ pub struct CreateBookTemplate {
 }
 
 #[derive(Template)]
-#[template(path = "edit.html")]
+#[template(path = "partials/edit.html")]
 pub struct CreateEditFormTemplate {
     id: String,
     title: String,
