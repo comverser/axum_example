@@ -1,0 +1,12 @@
+{% extends "layouts/spa_layout.html" %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+<main>
+    <h2>{{article.name}}</h2>
+    <p>{{article.body}}</p>
+    <a class="btn" href="/spa">Back to All Articles</a>
+</main>
+{% endblock %}

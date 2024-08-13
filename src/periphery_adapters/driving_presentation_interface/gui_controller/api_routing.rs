@@ -13,25 +13,37 @@ use handlers::{
     create_task::create_task,
     delete_task::delete_task,
     get_task::{get_all_tasks, get_one_task},
+    index::index,
     partial_update_task::partial_update_task,
     reading_list::{
-        add_book, delete_book, edit_book, get_book, get_books, index, search_books, update_book,
+        add_book, delete_book, edit_book, get_book, get_books, reading_list_index, search_books,
+        update_book,
     },
     shared_mutable_state::shared_mutable_state,
+    spa::{get_article, spa_index, upload_article},
     users::{create_user, login, logout},
 };
 
 pub fn create_router(app_state: AppState) -> Router<AppState> {
     Router::new()
+        .route("/", get(index))
         .route("/state", get(shared_mutable_state))
         .nest("/users", create_users_router(app_state))
         .nest("/tasks", create_tasks_router())
         .nest("/reading_list", create_reading_list_router())
+        .nest("/spa", create_spa_router())
+}
+
+fn create_spa_router() -> Router<AppState> {
+    Router::new()
+        .route("/", get(spa_index))
+        .route("/articles", post(upload_article))
+        .route("/articles/:article_id", get(get_article))
 }
 
 fn create_reading_list_router() -> Router<AppState> {
     Router::new()
-        .route("/", get(index))
+        .route("/", get(reading_list_index))
         .route("/books", get(get_books).post(add_book))
         .route(
             "/books/:book_id",

@@ -18,7 +18,7 @@ use tower::{
 use tower_http::cors::{Any, CorsLayer};
 
 use crate::{
-    application_core::domain_layer::models::book::Book,
+    application_core::domain_layer::models::{article::Article, book::Book},
     periphery_adapters::{
         driven_infrastructure_interface::persistence_adapter::{
             connect_database,
@@ -35,6 +35,7 @@ pub struct AppState {
     pub message: Arc<Mutex<String>>,
     pub database_connection: DatabaseConnection,
     pub my_reading_list: Arc<Mutex<Vec<Book>>>,
+    pub spa_articles: Arc<Mutex<Vec<Article>>>,
 }
 
 pub async fn setup_app_state(database_url: &str) -> AppState {
@@ -51,6 +52,30 @@ pub async fn setup_app_state(database_url: &str) -> AppState {
                 id: String::from("2"),
                 title: String::from("1984"),
                 author: String::from("George Orwell"),
+            },
+        ])),
+        spa_articles: Arc::new(Mutex::new(vec![
+            Article {
+                id: 1,
+                name: String::from("Welcome to the dojo"),
+                body: String::from(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempordunt \
+                    ut labore et dolore magna aliqua.",
+                ),
+            },
+            Article {
+                id: 2,
+                name: String::from("How to be a Ninja"),
+                body: String::from("ThThis is the body of article 2This is the body of article 2This\
+                 is the body of article 2This is the body of article 2This is the body of article 2\
+                 This is the body of article 2This is the body of article 2This is the body of article 2\
+                 This is the body of article 2This is the body of article 2is is the body of article 2"),
+            },
+            Article {
+                id: 3,
+                name: String::from("Ninja Web Dev Tips"),
+                body: String::from("This is the body of article 2 testsef jdlsfj lksadjflasdj lj as\
+                dsjflkdsjafljdslafjlke fsdja lfjsdlafj ksldafj ldsakjf lsdakjfl"),
             },
         ])),
     }

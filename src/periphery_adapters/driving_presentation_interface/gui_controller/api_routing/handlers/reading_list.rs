@@ -47,7 +47,7 @@ pub struct CreateEditFormTemplate {
     author: String,
 }
 
-pub async fn index() -> CreateHomepageTemplate {
+pub async fn reading_list_index() -> CreateHomepageTemplate {
     CreateHomepageTemplate {}
 }
 

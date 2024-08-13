@@ -1,0 +1,7 @@
+{% for article in articles %}
+<div class="article">
+    <h3>{{ article.name }}</h3>
+    <p>{{ article.body }}...</p>
+    <a href="/spa/articles/{{article.id}}" class="btn">View Details</a>
+</div>
+{% endfor %}

@@ -1,0 +1,23 @@
+{% extends "layouts/spa_layout.html" %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+<main>
+    <h2>All Articles</h2>
+    <div class="article-list">
+        {% include "partials/spa_list.html" %}
+    </div>
+</main>
+
+<footer>
+    <h2>Add a New Article</h2>
+    <form method="post" action="/spa/articles" hx-target=".article-list" hx-push-url="false">
+        <input type="text" name="name" placeholder="Article Name" required>
+        <textarea name="body" placeholder="Article Body" required></textarea>
+        <button class="btn" type="submit">Add Article</button>
+    </form>
+</footer>
+
+{% endblock %}
